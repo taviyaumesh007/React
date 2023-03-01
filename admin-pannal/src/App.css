@@ -46,8 +46,26 @@
   font-style: normal;
 }
 
+/* ****************Navbar*************** */
+
 .nav-bar {
   display: flex;
   justify-content: space-between;
   padding: 30px;
+}
+
+
+
+/* ****************SideBar*************** */
+.side-bar {
+  display: flex;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+  list-style-type: none;
+}
+
+.underline-remove {
+  text-decoration: none;
 }

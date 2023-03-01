@@ -9,18 +9,19 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import  Dashboard  from "../img/dashboard.png";
+import Dashboard from "../img/dashboard.png";
 import icons from "../img/icons.png";
 import maps from "../img/maps.png";
-import userProfile from '../img/user-profile.png'
-import tables from '../img/tables.png'
-import login from '../img/login.png'
-import register from '../img/register.png'
-import gettingStarted from '../img/getting-started.png'
-import foundation from '../img/foundation.png'
-import components from '../img/components.png'
-import blueLogo from '../img/blue logo.png'
+import userProfile from "../img/user-profile.png";
+import tables from "../img/tables.png";
+import login from "../img/login.png";
+import register from "../img/register.png";
+import gettingStarted from "../img/getting-started.png";
+import foundation from "../img/foundation.png";
+import components from "../img/components.png";
+import blueLogo from "../img/blue logo.png";
 import NavBar from "./NavBar";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -32,106 +33,171 @@ export default function SideBar() {
   };
 
   const drawer = (
-    <div sx={{
-      width:'250px'
-    }}>
+    <div
+      sx={{
+        width: "250px",
+      }}
+    >
       <Toolbar />
       <Box>
-      <img src={blueLogo} alt="" />
+        <img src={blueLogo} alt="" />
       </Box>
       <List>
-        <ListItem >
+        <ListItem>
           <ListItemButton>
-            <ListItemIcon><img src={Dashboard}  alt="" /></ListItemIcon>
-            <ListItemText>dashboard</ListItemText>
+            <Link className="underline-remove" to={"/"}>
+              <Box className="side-bar">
+                <ListItemIcon>
+                  <img src={Dashboard} alt="" />
+                </ListItemIcon>
+                <ListItemText>dashboard</ListItemText>
+              </Box>
+            </Link>
           </ListItemButton>
         </ListItem>
-        <ListItem >
+        <ListItem>
           <ListItemButton>
-            <ListItemIcon><img src={icons}  alt="" /></ListItemIcon>
-            <ListItemText>Icons</ListItemText>
+            <Link className="underline-remove" to={"/icons"}>
+              <Box className="side-bar">
+                <ListItemIcon>
+                  <img src={icons} alt="" />
+                </ListItemIcon>
+                <ListItemText>Icons</ListItemText>
+              </Box>
+            </Link>
           </ListItemButton>
         </ListItem>
-        <ListItem >
+        <ListItem>
           <ListItemButton>
-            <ListItemIcon><img src={maps}  alt="" /></ListItemIcon>
-            <ListItemText>Maps</ListItemText>
+            <Link className="underline-remove" to={"/maps"}>
+              <Box className="side-bar">
+                <ListItemIcon>
+                  <img src={maps} alt="" />
+                </ListItemIcon>
+                <ListItemText>Maps</ListItemText>
+              </Box>
+            </Link>
           </ListItemButton>
         </ListItem>
-        <ListItem >
+        <ListItem>
           <ListItemButton>
-            <ListItemIcon><img src={userProfile}  alt="" /></ListItemIcon>
-            <ListItemText>User profile</ListItemText>
+            <Link className="underline-remove" to={"/user-profile"}>
+              <Box className="side-bar">
+                <ListItemIcon>
+                  <img src={userProfile} alt="" />
+                </ListItemIcon>
+                <ListItemText>User profile</ListItemText>
+              </Box>
+            </Link>
           </ListItemButton>
         </ListItem>
-        <ListItem >
+        <ListItem>
           <ListItemButton>
-            <ListItemIcon><img src={tables}  alt="" /></ListItemIcon>
-            <ListItemText>Tables</ListItemText>
+            <Link className="underline-remove" to={"/tables"}>
+              <Box className="side-bar">
+                <ListItemIcon>
+                  <img src={tables} alt="" />
+                </ListItemIcon>
+                <ListItemText>Tables</ListItemText>
+              </Box>
+            </Link>
           </ListItemButton>
         </ListItem>
-        <ListItem >
+        <ListItem>
           <ListItemButton>
-            <ListItemIcon><img src={login}  alt="" /></ListItemIcon>
-            <ListItemText>Login</ListItemText>
+            <Link className="underline-remove" to={"/log-in"}>
+              <Box className="side-bar">
+                <ListItemIcon>
+                  <img src={login} alt="" />
+                </ListItemIcon>
+                <ListItemText>Login</ListItemText>
+              </Box>
+            </Link>
           </ListItemButton>
         </ListItem>
-        <ListItem >
+        <ListItem>
           <ListItemButton>
-            <ListItemIcon><img src={register}  alt="" /></ListItemIcon>
-            <ListItemText>Register</ListItemText>
+            <Link className="underline-remove" to={"/register"}>
+              <Box className="side-bar">
+                <ListItemIcon>
+                  <img src={register} alt="" />
+                </ListItemIcon>
+                <ListItemText>Register</ListItemText>
+              </Box>
+            </Link>
           </ListItemButton>
         </ListItem>
       </List>
-      <Divider sx={{
-        width: '185px',
-        margin :"23px"
-      }} />
+      <Divider
+        sx={{
+          width: "185px",
+          margin: "23px",
+        }}
+      />
       <Typography variant="h6" noWrap component="div">
         DOCUMENTATION
       </Typography>
       <List>
-        <ListItem >
+        <ListItem>
           <ListItemButton>
-            <ListItemIcon><img src={gettingStarted}  alt="" /></ListItemIcon>
-            <ListItemText sx={{
-              minWidth: '110px'
-            }}>Getting started</ListItemText>
+            <ListItemIcon>
+              <img src={gettingStarted} alt="" />
+            </ListItemIcon>
+            <ListItemText
+              sx={{
+                minWidth: "110px",
+              }}
+            >
+              Getting started
+            </ListItemText>
           </ListItemButton>
         </ListItem>
-        <ListItem >
+        <ListItem>
           <ListItemButton>
-            <ListItemIcon><img src={foundation}  alt="" /></ListItemIcon>
-            <ListItemText sx={{
-              minWidth: '110px'
-            }}>Foundation</ListItemText>
+            <ListItemIcon>
+              <img src={foundation} alt="" />
+            </ListItemIcon>
+            <ListItemText
+              sx={{
+                minWidth: "110px",
+              }}
+            >
+              Foundation
+            </ListItemText>
           </ListItemButton>
         </ListItem>
-        <ListItem >
+        <ListItem>
           <ListItemButton>
-            <ListItemIcon><img src={components}  alt="" /></ListItemIcon>
-            <ListItemText sx={{
-              minWidth: '110px'
-            }}>Components</ListItemText>
+            <ListItemIcon>
+              <img src={components} alt="" />
+            </ListItemIcon>
+            <ListItemText
+              sx={{
+                minWidth: "110px",
+              }}
+            >
+              Components
+            </ListItemText>
           </ListItemButton>
         </ListItem>
       </List>
     </div>
   );
 
-
   return (
     <div>
-      <Box sx={{
-        display: "flex",
-        }}>  
+      <Box
+        sx={{
+          display: "flex",
+        }}
+      >
         <Box
           component="nav"
           sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
           aria-label="mailbox folders"
         >
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          
+
           <Drawer
             variant="permanent"
             sx={{
@@ -139,9 +205,9 @@ export default function SideBar() {
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
                 width: drawerWidth,
-                borderRight:'none',
+                borderRight: "none",
                 background: "#FFFFFF",
-                boxShadow: "0px 0px 32px rgba(136, 152, 170, 0.15)"
+                boxShadow: "0px 0px 32px rgba(136, 152, 170, 0.15)",
               },
             }}
             open
@@ -149,9 +215,8 @@ export default function SideBar() {
             {drawer}
           </Drawer>
         </Box>
-        <NavBar/>
+        <NavBar />
       </Box>
     </div>
   );
 }
-

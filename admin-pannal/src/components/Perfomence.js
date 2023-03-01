@@ -9,7 +9,6 @@ export default function Perfomence({
   percentage,
   month,
 }) {
-  console.log("newonw", chart);
   return (
     <div>
       <Box>
