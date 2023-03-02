@@ -7,6 +7,7 @@ import UserProfile from "./pages/UserProfile";
 import LogIn from "./pages/LogIn";
 import Register from "./pages/Register";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Tables from "./pages/Tables";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/icons" element={<Icons />} />
           <Route path="/maps" element={<Maps />} />
           <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/tables" element={<Tables />} />
           <Route path="/log-in" element={<LogIn />} />
           <Route path="/register" element={<Register />} />
         </Routes>

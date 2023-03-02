@@ -46,6 +46,13 @@
   font-style: normal;
 }
 
+.postion-set {
+  position: absolute;
+  left: 240px;
+  border: 2px solid;
+  width: 87.5%;
+}
+
 /* ****************Navbar*************** */
 
 .nav-bar {

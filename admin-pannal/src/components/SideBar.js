@@ -21,7 +21,7 @@ import foundation from "../img/foundation.png";
 import components from "../img/components.png";
 import blueLogo from "../img/blue logo.png";
 import NavBar from "./NavBar";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -32,6 +32,17 @@ export default function SideBar() {
     setMobileOpen(!mobileOpen);
   };
 
+  const navLinkStyle = ({ isActive }) => {
+    {
+      console.log(isActive);
+    }
+    return {
+      background: isActive ? "#F5F5F5" : "#FFFFFF",
+      width: isActive ? "200px" : "none",
+      height: isActive ? "38px" : "none",
+    };
+  };
+
   const drawer = (
     <div
       sx={{
@@ -39,92 +50,116 @@ export default function SideBar() {
       }}
     >
       <Toolbar />
-      <Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <img src={blueLogo} alt="" />
       </Box>
       <List>
         <ListItem>
           <ListItemButton>
-            <Link className="underline-remove" to={"/"}>
+            <NavLink style={navLinkStyle} className="underline-remove" to={"/"}>
               <Box className="side-bar">
                 <ListItemIcon>
                   <img src={Dashboard} alt="" />
                 </ListItemIcon>
                 <ListItemText>dashboard</ListItemText>
               </Box>
-            </Link>
+            </NavLink>
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <Link className="underline-remove" to={"/icons"}>
+            <NavLink
+              style={navLinkStyle}
+              className="underline-remove"
+              to={"/icons"}
+            >
               <Box className="side-bar">
                 <ListItemIcon>
                   <img src={icons} alt="" />
                 </ListItemIcon>
                 <ListItemText>Icons</ListItemText>
               </Box>
-            </Link>
+            </NavLink>
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <Link className="underline-remove" to={"/maps"}>
+            <NavLink
+              style={navLinkStyle}
+              className="underline-remove"
+              to={"/maps"}
+            >
               <Box className="side-bar">
                 <ListItemIcon>
                   <img src={maps} alt="" />
                 </ListItemIcon>
                 <ListItemText>Maps</ListItemText>
               </Box>
-            </Link>
+            </NavLink>
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <Link className="underline-remove" to={"/user-profile"}>
+            <NavLink
+              style={navLinkStyle}
+              className="underline-remove"
+              to={"/user-profile"}
+            >
               <Box className="side-bar">
                 <ListItemIcon>
                   <img src={userProfile} alt="" />
                 </ListItemIcon>
                 <ListItemText>User profile</ListItemText>
               </Box>
-            </Link>
+            </NavLink>
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <Link className="underline-remove" to={"/tables"}>
+            <NavLink
+              style={navLinkStyle}
+              className="underline-remove"
+              to={"/tables"}
+            >
               <Box className="side-bar">
                 <ListItemIcon>
                   <img src={tables} alt="" />
                 </ListItemIcon>
                 <ListItemText>Tables</ListItemText>
               </Box>
-            </Link>
+            </NavLink>
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <Link className="underline-remove" to={"/log-in"}>
+            <NavLink
+              style={navLinkStyle}
+              className="underline-remove"
+              to={"/log-in"}
+            >
               <Box className="side-bar">
                 <ListItemIcon>
                   <img src={login} alt="" />
                 </ListItemIcon>
                 <ListItemText>Login</ListItemText>
               </Box>
-            </Link>
+            </NavLink>
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <Link className="underline-remove" to={"/register"}>
+            <NavLink
+              style={navLinkStyle}
+              className="underline-remove"
+              to={"/register"}
+            >
               <Box className="side-bar">
                 <ListItemIcon>
                   <img src={register} alt="" />
                 </ListItemIcon>
                 <ListItemText>Register</ListItemText>
               </Box>
-            </Link>
+            </NavLink>
           </ListItemButton>
         </ListItem>
       </List>
