@@ -49,8 +49,8 @@
 .postion-set {
   position: absolute;
   left: 240px;
-  border: 2px solid;
-  width: 87.5%;
+  width: 87.4%;
+  top: 311px;
 }
 
 /* ****************Navbar*************** */

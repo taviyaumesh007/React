@@ -1,5 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
+import ChartDemo from "../components/ChartDemo";
+import BarChart from "../components/BarChart";
 
 export default function Dashboard() {
   return (
@@ -8,9 +10,34 @@ export default function Dashboard() {
         sx={{
           display: "flex",
           justifyContent: "center",
+          height: "491px",
         }}
       >
-        <h1>dashboard</h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box
+            sx={{
+              width: "1052px",
+              height: "491px",
+              margin: "10px",
+            }}
+          >
+            <ChartDemo />
+          </Box>
+          <Box
+            sx={{
+              width: "511px",
+              height: "491px",
+              margin: "10px",
+            }}
+          >
+            <BarChart />
+          </Box>
+        </div>
       </Box>
     </div>
   );

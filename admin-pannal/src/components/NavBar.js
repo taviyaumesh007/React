@@ -12,6 +12,7 @@ import sales from "../img/sales.png";
 import awsm from "../img/awsm.png";
 import upArrow from "../img/up-arrow.png";
 import downArrow from "../img/down-arrow.png";
+import Dashboard from "../pages/Dashboard";
 
 export default function NavBar() {
   const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -93,7 +94,7 @@ export default function NavBar() {
     <div>
       <Box
         sx={{
-          width: "1680px",
+          width: "1663px",
           height: "381px",
           background: "linear-gradient(90deg, #5E72E4 0%, #825EE4 100%)",
         }}
