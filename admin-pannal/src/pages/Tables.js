@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
+import TableData from "../components/TableData";
 
 export default function Tables() {
   return (
@@ -10,7 +11,7 @@ export default function Tables() {
           justifyContent: "center",
         }}
       >
-        <h1>tables</h1>
+        <TableData />
       </Box>
     </div>
   );
