@@ -1,10 +1,21 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/Header";
+import Cards from "./components/Cards";
+import CardsDetails from "./components/CardsDetails";
+import { Routes, Route } from "react-router-dom";
+import "./components/style.css";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <h1>React Redux Practice</h1>
-    </div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Cards />} />
+        <Route path="/card" element={<CardsDetails />} />
+      </Routes>
+    </>
   );
 }
 
