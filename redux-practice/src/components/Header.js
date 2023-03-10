@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -7,12 +7,19 @@ import Badge from "@mui/material/Badge";
 import Menu from "@mui/material/Menu";
 import { NavLink } from "react-router-dom";
 import "./style.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Table } from "react-bootstrap";
+import { DLT } from "../redux/actions/action";
 
 const Header = () => {
-  const getData = useSelector((state) => state.cartreducer);
+  const [price, setPrice] = useState(0);
+  console.log("price", price);
+
+  const getData = useSelector((state) => state.cartreducer.carts);
 
   console.log("getData", getData);
+
+  const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -22,6 +29,24 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const dlt = (id) => {
+    dispatch(DLT(id));
+    console.log(id);
+  };
+
+  const total = () => {
+    let price = 0;
+    getData.map((ele, k) => {
+      price = ele.price + price;
+    });
+    setPrice(price);
+  };
+
+  useEffect(() => {
+    total();
+  }, [total]);
+
   return (
     <div>
       <Navbar bg="dark" variant="dark" style={{ height: "60px " }}>
@@ -39,7 +64,7 @@ const Header = () => {
           </Nav>
 
           <Badge
-            badgeContent={0}
+            badgeContent={getData.length}
             color="primary"
             id="basic-button"
             aria-controls={open ? "basic-menu" : undefined}
@@ -59,9 +84,76 @@ const Header = () => {
             "aria-labelledby": "basic-button",
           }}
         >
-          <div className="card_details">
-            <p>your card is empty</p>
-          </div>
+          {getData.length ? (
+            <div className="card_details">
+              <Table>
+                <thead>
+                  <tr>
+                    <th>photo</th>
+                    <th>Restaurant Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {getData.map((elm) => {
+                    return (
+                      <>
+                        <tr>
+                          <td>
+                            <NavLink
+                              to={`/cart/${elm.id}`}
+                              onClick={handleClose}
+                            >
+                              <img
+                                style={{ width: "100px", height: "100px" }}
+                                src={elm.imgdata}
+                                alt=""
+                              />
+                            </NavLink>
+                          </td>
+                          <td>
+                            <p>{elm.rname}</p>
+                            <p>price:{elm.price}</p>
+                            <p>qnty:{elm.qnty}</p>
+                            <p
+                              style={{
+                                background: "red",
+                                color: "whitesmoke",
+                                width: "20px",
+                                padding: "5px",
+                                cursor: "pointer",
+                              }}
+                              onClick={(e) => dlt(e.id)}
+                            >
+                              X
+                            </p>
+                          </td>
+                          <td>
+                            <p
+                              style={{
+                                background: "red",
+                                color: "whitesmoke",
+                                width: "20px",
+                                padding: "5px",
+                                cursor: "pointer",
+                              }}
+                              onClick={(e) => dlt(e.id)}
+                            >
+                              X
+                            </p>
+                          </td>
+                        </tr>
+                      </>
+                    );
+                  })}
+                  <p className="text-center">Total : {price}</p>
+                </tbody>
+              </Table>
+            </div>
+          ) : (
+            <div className="card_details">
+              <p>Item Not Selected</p>
+            </div>
+          )}
         </Menu>
       </Navbar>
     </div>
