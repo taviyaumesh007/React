@@ -1,7 +1,5 @@
 import "./App.css";
-import LogIn from "./components/LogIn";
 import SideBar from "./components/SideBar";
-import UserDetail from "./components/UserDetail";
 
 function App() {
   return (

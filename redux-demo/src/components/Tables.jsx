@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,16 +7,26 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Button, Popover, Typography } from "@mui/material";
+import { Button, Popover } from "@mui/material";
 import { Box } from "@mui/system";
+import Form from "./Form";
+import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
+import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 const Tables = () => {
   const rows = [createData("Frozen yoghurt", 159, 6.0, 24, 4.0)];
+  const [edit, setEdit] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  console.log(anchorEl);
+
+  useEffect(() => {
+    edit && setAnchorEl(null);
+  }, [edit]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -24,9 +34,17 @@ const Tables = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    setEdit(false);
   };
 
+  const handleEdit = () => {
+    setEdit(true);
+  };
+
+  console.log("edit", edit);
+
   const open = Boolean(anchorEl);
+  console.log("open", open);
   const id = open ? "simple-popover" : undefined;
   return (
     <div>
@@ -69,16 +87,31 @@ const Tables = () => {
                         id={id}
                         open={open}
                         anchorEl={anchorEl}
-                        onClose={handleClose}
+                        onClose={() => setAnchorEl(false)}
                         anchorOrigin={{
                           vertical: "bottom",
                           horizontal: "left",
                         }}
                       >
-                        <Box sx={{ display: "flex", flexDirection: "column" }}>
-                          <Button>hellop</Button>
-                          <Button>hellop</Button>
-                          <Button>hellop</Button>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            width: "200px",
+                          }}
+                        >
+                          <Button>
+                            <VisibilityRoundedIcon />
+                            View All
+                          </Button>
+                          <Button onClick={handleEdit}>
+                            <BusinessRoundedIcon />
+                            Edit Company
+                          </Button>
+                          <Button>
+                            <DeleteRoundedIcon />
+                            Delete Company
+                          </Button>
                         </Box>
                       </Popover>
                     </>
@@ -89,6 +122,7 @@ const Tables = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Form handleClose={handleClose} open={edit} />
     </div>
   );
 };

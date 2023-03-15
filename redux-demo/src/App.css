@@ -49,3 +49,8 @@
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   background: #E7F0FF !important;
 }
+
+.input-box {
+  margin: 20px !important;
+  width: 370px
+}
