@@ -17,10 +17,19 @@ import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import Tables from "./Tables";
 import AddIcon from "@mui/icons-material/Add";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
 const SideBar = () => {
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+    localStorage.removeItem("myToken");
+    navigate({ pathname: "/" });
+  };
+
   return (
     <div>
       <Box sx={{ display: "flex" }}>
@@ -71,7 +80,14 @@ const SideBar = () => {
               </List>
             </Box>
           </Box>
+          <Box sx={{ background: "#111828" }}>
+            <Button onClick={logoutHandler} sx={{ color: "#9C3F41" }}>
+              <LogoutOutlinedIcon />
+              LogOut
+            </Button>
+          </Box>
         </Drawer>
+
         <Box
           sx={{
             width: "100%",

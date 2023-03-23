@@ -13,23 +13,65 @@ import Form from "./Form";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
 const Tables = () => {
-  const rows = [createData("Frozen yoghurt", 159, 6.0, 24, 4.0)];
   const [edit, setEdit] = useState(false);
 
+  const [apiData, setApiData] = useState([]);
+  const [apiData1, setApiData1] = useState([]);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  console.log(anchorEl);
+
+  const [companyData, setCompanyData] = useState([]);
+  const [dataId, setDataId] = useState();
+
+  // API Calls
+  const history = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    const token = localStorage.getItem("myToken");
+    let mytoken = " ";
+
+    if (token) {
+      const obj = JSON.parse(token);
+      mytoken = obj.token;
+    }
+
+    axios
+      .get("https://messagingtest.vitelglobal.com/nodejs/web/company", {
+        headers: {
+          authorization: `${mytoken}`,
+        },
+      })
+      .then((response) => {
+        setApiData(response.data.companyData);
+      })
+      .catch((error) => {});
+    const tokenString = localStorage.getItem("myToken");
+    if (!tokenString) {
+      history.push("/?returnUrl = " + location.pathname);
+      return;
+    }
+  }, []);
 
   useEffect(() => {
     edit && setAnchorEl(null);
   }, [edit]);
 
-  const handleClick = (event) => {
+  const handleClickNow = (event, ids, datas) => {
     setAnchorEl(event.currentTarget);
+    setDataId(ids);
+    setApiData1(datas);
+  };
+
+  const handleClickNew = () => {
+    const rowDatas = apiData1;
+    if (rowDatas._id === dataId) {
+    }
+
+    setEdit(true);
+    setCompanyData(rowDatas);
   };
 
   const handleClose = () => {
@@ -37,17 +79,10 @@ const Tables = () => {
     setEdit(false);
   };
 
-  const handleEdit = () => {
-    setEdit(true);
-  };
-
-  console.log("edit", edit);
-
   const open = Boolean(anchorEl);
-  console.log("open", open);
   const id = open ? "simple-popover" : undefined;
   return (
-    <div>
+    <div sx={{ boxShadow: "none !important" }}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead sx={{ background: "#F3F4F6" }}>
@@ -61,68 +96,81 @@ const Tables = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
-                <TableCell align="right">
-                  {
-                    <>
-                      <Button
-                        aria-describedby={id}
-                        variant="contained"
-                        onClick={handleClick}
-                      >
-                        <MoreVertIcon />
-                      </Button>
-                      <Popover
-                        id={id}
-                        open={open}
-                        anchorEl={anchorEl}
-                        onClose={() => setAnchorEl(false)}
-                        anchorOrigin={{
-                          vertical: "bottom",
-                          horizontal: "left",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            width: "200px",
+            {apiData.map((row, index) => {
+              return (
+                <TableRow
+                  key={index}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.company_name}
+                  </TableCell>
+                  <TableCell align="right">{row.company_email}</TableCell>
+                  <TableCell align="right">{row.company_mobile_no}</TableCell>
+                  <TableCell align="right">{row.company_address}</TableCell>
+                  <TableCell align="right">{row._id}</TableCell>
+                  <TableCell align="right">
+                    {
+                      <>
+                        <Button
+                          aria-describedby={id}
+                          variant="contained"
+                          onClick={(e) => handleClickNow(e, row._id, row)}
+                        >
+                          <MoreVertIcon />
+                        </Button>
+                        <Popover
+                          sx={{ boxShadow: "none !important" }}
+                          // id={id}
+                          open={open}
+                          anchorEl={anchorEl}
+                          onClose={() => setAnchorEl(false)}
+                          anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "left",
                           }}
                         >
-                          <Button>
-                            <VisibilityRoundedIcon />
-                            View All
-                          </Button>
-                          <Button onClick={handleEdit}>
-                            <BusinessRoundedIcon />
-                            Edit Company
-                          </Button>
-                          <Button>
-                            <DeleteRoundedIcon />
-                            Delete Company
-                          </Button>
-                        </Box>
-                      </Popover>
-                    </>
-                  }
-                </TableCell>
-              </TableRow>
-            ))}
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              width: "200px",
+                            }}
+                          >
+                            <Button>
+                              <VisibilityRoundedIcon />
+                              View All
+                            </Button>
+
+                            <Button
+                              aria-describedby={id}
+                              variant="contained"
+                              onClick={() => handleClickNew()}
+                            >
+                              <BusinessRoundedIcon />
+                              Edit Company
+                            </Button>
+                            <Button>
+                              <DeleteRoundedIcon />
+                              Delete Company
+                            </Button>
+                          </Box>
+                        </Popover>
+                      </>
+                    }
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
-      <Form handleClose={handleClose} open={edit} />
+      <Form
+        companyApi={companyData}
+        handleClose={handleClose}
+        open={edit}
+        data={apiData}
+      />
     </div>
   );
 };

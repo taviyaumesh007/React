@@ -54,3 +54,8 @@
   margin: 20px !important;
   width: 370px
 }
+
+.css-3bmhjh-MuiPaper-root-MuiPopover-paper {
+  box-shadow: 1px 1px rgb(229, 253, 255) !important;
+  border-radius: 10px !important;
+}

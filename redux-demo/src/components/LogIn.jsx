@@ -1,11 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { pink } from "@mui/material/colors";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { Alert } from "@mui/material";
 
 const LogIn = () => {
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [successMsg, setSuccessMsg] = useState(null);
+  const navigate = useNavigate();
+
+  const logInForm = (credentials) => {
+    console.log("credentials", credentials);
+    const url =
+      "https://messagingtest.vitelglobal.com/nodejs/web/user/login/admin";
+
+    return axios.post(url, credentials);
+  };
+
+  const [logIn, setLogIn] = useState({
+    user_email: "admin@gmail.com",
+    user_password: "Admin@123",
+  });
+  console.log(logIn);
+
+  console.log("errorMsg======", errorMsg);
+  console.log("successMsg======", successMsg);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    logInForm(logIn)
+      .then((response) => {
+        const {
+          data: {
+            message,
+            user: { token },
+          },
+        } = response;
+
+        localStorage.setItem("myToken", JSON.stringify({ token }));
+        navigate({ pathname: "/comanydetails" });
+        setSuccessMsg(message);
+        // setErrorMsg(null);
+      })
+      .catch((error) => {
+        const {
+          error: {
+            data: { message },
+          },
+        } = error;
+        navigate({ pathname: "/" });
+        setErrorMsg(message);
+        // setSuccessMsg(null);
+      });
+  };
+
+  const handleChange = ({ target: { name, value } }) => {
+    setLogIn({ ...logIn, [name]: value });
+  };
+
   return (
     <div className="log-in">
       <Box
@@ -53,26 +108,36 @@ const LogIn = () => {
           >
             <TextField
               id="outlined-disabled"
-              label="Email Address"
+              name="user_email"
+              value={logIn.user_email}
               variant="outlined"
               sx={{
                 width: "200px",
               }}
+              onChange={handleChange}
             />
             <TextField
               id="outlined-basic"
-              label="Password"
+              name="user_password"
+              value={logIn.user_password}
               variant="outlined"
+              onChange={handleChange}
             />
           </Box>
+          {successMsg && <Alert severity="success">{successMsg}</Alert>}
+          {errorMsg && <Alert severity="error">{errorMsg}</Alert>}
+
           {/* Button */}
           <Box sx={{ padding: "20px" }}>
-            <Button
-              sx={{ padding: "9px 250px 10px 250px" }}
-              variant="contained"
-            >
-              Sign In
-            </Button>
+            <Link>
+              <Button
+                onClick={handleSubmit}
+                sx={{ padding: "9px 250px 10px 250px" }}
+                variant="contained"
+              >
+                Sign In
+              </Button>
+            </Link>
           </Box>
         </Box>
       </Box>

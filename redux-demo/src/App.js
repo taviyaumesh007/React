@@ -1,12 +1,10 @@
 import "./App.css";
-import SideBar from "./components/SideBar";
+import Routers from "./components/Routers";
 
 function App() {
   return (
     <div className="App">
-      {/* <LogIn /> */}
-      <SideBar />
-      {/* <another>{<div>hello</div>}</another> */}
+      <Routers />
     </div>
   );
 }
