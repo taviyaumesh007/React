@@ -14,7 +14,7 @@ import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Route, useLocation, useNavigate } from "react-router-dom";
 
 const Tables = () => {
   const [edit, setEdit] = useState(false);
@@ -29,7 +29,8 @@ const Tables = () => {
   // API Calls
   const history = useNavigate();
   const location = useLocation();
-  useEffect(() => {
+
+  const getData = async () => {
     const token = localStorage.getItem("myToken");
     let mytoken = " ";
 
@@ -50,9 +51,13 @@ const Tables = () => {
       .catch((error) => {});
     const tokenString = localStorage.getItem("myToken");
     if (!tokenString) {
-      history.push("/?returnUrl = " + location.pathname);
+      <Navigate to="/log-in" />;
       return;
     }
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   useEffect(() => {
@@ -166,6 +171,7 @@ const Tables = () => {
         </Table>
       </TableContainer>
       <Form
+        getData={getData}
         companyApi={companyData}
         handleClose={handleClose}
         open={edit}

@@ -27,7 +27,7 @@ const SideBar = () => {
   const navigate = useNavigate();
   const logoutHandler = () => {
     localStorage.removeItem("myToken");
-    navigate({ pathname: "/" });
+    navigate({ pathname: "/log-in" });
   };
 
   return (

@@ -51,7 +51,7 @@ const LogIn = () => {
             data: { message },
           },
         } = error;
-        navigate({ pathname: "/" });
+        navigate({ pathname: "/log-in" });
         setErrorMsg(message);
         // setSuccessMsg(null);
       });
