@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -108,24 +108,20 @@ const SideBar = () => {
               }}
             >
               {/* serch Box */}
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              {/* <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box>
                   <Stack spacing={2} sx={{ width: 300 }}>
                     <Autocomplete
                       freeSolo
                       id="free-solo-2-demo"
                       disableClearable
-                      //   options={top100Films.map((option) => option.title)}
                       renderInput={(params) => (
                         <TextField
-                          {...params}
                           label="Search"
+                          value={searchData}
                           position="end"
-                          InputProps={{
-                            ...params.InputProps,
-                            type: "search",
-                          }}
                           variant="standard"
+                          onChange={handleSearch}
                         />
                       )}
                     />
@@ -134,7 +130,7 @@ const SideBar = () => {
                 <Box>
                   <AddIcon />
                 </Box>
-              </Box>
+              </Box> */}
               {/* tables */}
               <Box sx={{ paddingTop: "20px" }}>
                 <Tables />

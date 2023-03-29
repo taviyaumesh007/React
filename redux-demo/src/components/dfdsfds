@@ -1,0 +1,96 @@
+<Popover
+                          sx={{ boxShadow: "none !important" }}
+                          // id={id}
+                          open={open}
+                          anchorEl={anchorEl}
+                          onClose={() => setAnchorEl(false)}
+                          anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "left",
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              width: "200px",
+                            }}
+                          >
+                            <Link
+                              style={{
+                                textDecoration: "none",
+                              }}
+                              to={"/userdeatils"}
+                            >
+                              <Button
+                                sx={{
+                                  width: "197px",
+                                  color: "black",
+                                  background: "white",
+                                  boxShadow: "none",
+                                  borderRadius: "10px",
+                                  "&:hover": {
+                                    background: "#1976D2",
+                                    boxShadow:
+                                      "inset 0px 10px 20px 2px rgba(0, 0, 0, 0.25);",
+                                    color: "whitesmoke",
+                                  },
+                                }}
+                              >
+                                <VisibilityRoundedIcon />
+                                <Typography> View All</Typography>
+                              </Button>
+                            </Link>
+                            <Link
+                              style={{
+                                textDecoration: "none",
+                              }}
+                            >
+                              <Button
+                                sx={{
+                                  width: "197px",
+                                  color: "black",
+                                  background: "white",
+                                  boxShadow: "none",
+                                  borderRadius: "10px",
+                                  "&:hover": {
+                                    background: "#1976D2",
+                                    boxShadow:
+                                      "inset 0px 10px 20px 2px rgba(0, 0, 0, 0.25);",
+                                    color: "whitesmoke",
+                                  },
+                                }}
+                                aria-describedby={id}
+                                variant="contained"
+                                onClick={() => handleClickNew()}
+                              >
+                                <BusinessRoundedIcon />
+                                Edit Company
+                              </Button>
+                            </Link>
+                            <Link
+                              style={{
+                                textDecoration: "none",
+                              }}
+                            >
+                              <Button
+                                sx={{
+                                  width: "197px",
+                                  color: "black",
+                                  background: "white",
+                                  boxShadow: "none",
+                                  borderRadius: "10px",
+                                  "&:hover": {
+                                    background: "#1976D2",
+                                    boxShadow:
+                                      "inset 0px 10px 20px 2px rgba(0, 0, 0, 0.25);",
+                                    color: "whitesmoke",
+                                  },
+                                }}
+                              >
+                                <DeleteRoundedIcon />
+                                Delete Company
+                              </Button>
+                            </Link>
+                          </Box>
+                        </Popover>

@@ -5,6 +5,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import Details from "./Details";
 import LogIn from "./LogIn";
 import SideBar from "./SideBar";
 
@@ -38,6 +39,7 @@ const Routers = () => {
               </>
             }
           />
+          <Route path="/userdeatils" element={<Details />} />
         </Routes>
       </Router>
     </div>
