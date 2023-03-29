@@ -96,6 +96,9 @@ export default function Details() {
                     sx={{
                       "&:last-child td, &:last-child th": { border: 0 },
                       height: "60px",
+                      "&:hover": {
+                        background: "#d5d5d56b",
+                      },
                     }}
                   >
                     <TableCell sx={{ color: "black" }}>

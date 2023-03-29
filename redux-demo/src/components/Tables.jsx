@@ -121,7 +121,7 @@ const Tables = () => {
   const id = open ? "simple-popover" : undefined;
   return (
     <div sx={{ boxShadow: "none !important" }}>
-      <Box sx={{ float: "left" }}>
+      <Box sx={{ float: "left", paddingBottom: "21px" }}>
         <TextField
           label="Search"
           value={filteredData}
